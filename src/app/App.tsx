@@ -1,5 +1,12 @@
+import Button from "../shared/UI/Button/Button";
+
 function App() {
-  return <>Настройка проекта</>;
+  return (
+    <>
+      <Button appearance={"big"}>Отправить</Button>
+      <Button appearance={"small"}>Отправить</Button>
+    </>
+  );
 }
 
 export default App;
