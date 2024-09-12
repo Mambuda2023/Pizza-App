@@ -1,6 +1,7 @@
 :root {
   --font: "Open Sans", sans-serif;
   --primary-color: #fe724c;
+  --primary-hover-color: #df6442;
   --text-secondary-color: #5b5b5e;
   --text-color: #000000;
   --white-color: #ffff;
