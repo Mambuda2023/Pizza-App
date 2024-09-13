@@ -1,14 +1,9 @@
-import Button from "../shared/UI/Button/Button";
-import Input from "../shared/UI/Input/Input";
+import { Layout } from "../widgets/Layout/Layout";
 
-function App() {
+export function App() {
   return (
     <>
-      <Button appearance={"big"}>Отправить</Button>
-      <Button appearance={"small"}>Отправить</Button>
-      <Input placeholder='Email'/>
+      <Layout />
     </>
   );
 }
-
-export default App;

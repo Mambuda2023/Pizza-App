@@ -1,0 +1,56 @@
+.sidebar {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 30px;
+  border-right: 1px solid var(--separator-color);
+}
+
+.user {
+  margin-bottom: 50px;
+}
+.user>img{
+    margin-bottom: 20px;
+}
+.name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.email {
+  color: #9ea1b1;
+  font-family: Open Sans;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+}
+
+.menu__item-link {
+  color: var(--text-color);
+}
+
+.menu__item-link > img {
+  margin-right: 15px;
+}
+
+.exit {
+  display: flex;
+  margin-top: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.exit > img {
+  margin-right: 10px;
+}
