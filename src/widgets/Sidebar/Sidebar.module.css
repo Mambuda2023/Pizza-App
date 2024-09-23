@@ -9,9 +9,11 @@
 .user {
   margin-bottom: 50px;
 }
-.user>img{
-    margin-bottom: 20px;
+
+.user > img {
+  margin-bottom: 20px;
 }
+
 .name {
   font-size: 20px;
   font-weight: 700;
@@ -30,7 +32,20 @@
   flex-direction: column;
   gap: 30px;
 }
-
+.link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--text-color);
+}
+.link:hover {
+  color: var(--primary-color);
+  transition: all 0.3s ease-in-out;
+}
+.active {
+  color: var(--primary-color);
+  transition: all 0.3s ease-in-out;
+}
 .menu__item {
   display: flex;
   align-items: center;

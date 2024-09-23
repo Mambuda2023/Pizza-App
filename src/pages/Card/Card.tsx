@@ -1,5 +1,4 @@
 const Cart = () => {
-    return <>Привет Card</>;
-  };
-  export default Cart;
-  
+  return <>Card</>;
+};
+export default Cart;

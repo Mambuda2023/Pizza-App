@@ -1,0 +1,25 @@
+.input {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-color);
+  border: 1px solid #efefef;
+  background-color: #fcfcfd;
+
+  border-radius: 10px;
+  padding: 16px 30px 16px 40px;
+  min-width: 256px;
+}
+
+.input-wrapper {
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+.input-wrapper:hover {
+  box-shadow: 15px 20px 45px 0px rgba(233, 233, 233, 0.8);
+}
+.search-icon {
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+}
