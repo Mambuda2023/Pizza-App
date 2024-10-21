@@ -6,13 +6,8 @@ const ErrorBoundary = () => {
   if (isRouteErrorResponse(error) && error.status >= 400) {
     return (
       <div>
-      
         <h1>{error.status}</h1>
         <h2>{error.data.sorry}</h2>
-        <p>
-          Go ahead and email {error.data.hrEmail} if you feel like this is a
-          mistake.
-        </p>
       </div>
     );
   }

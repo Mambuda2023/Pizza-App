@@ -12,13 +12,12 @@ export const router = createBrowserRouter([
     errorElement: <ErrorBoundary />,
     children: [
       { element: <Menu />, path: "/" },
-
       {
         path: "/cart",
         element: <Card />,
       },
       {
-        path: "/product/id",
+        path: "/product/:id",
         element: <Product />,
       },
     ],
