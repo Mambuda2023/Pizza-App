@@ -4,4 +4,5 @@ export default interface Product {
   price: number;
   ingredients: string[];
   rating: number;
+  image: string;
 }

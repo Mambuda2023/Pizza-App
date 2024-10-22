@@ -3,7 +3,7 @@ import styles from "./ProductCard.module.css";
 import { Link } from "react-router-dom";
 const ProductCard = ({
   id,
-  title,
+  name,
   description,
   img,
   price,
@@ -30,7 +30,7 @@ const ProductCard = ({
           </div>
         </header>
         <footer className={styles["footer"]}>
-          <h2 className={styles["title"]}>{title}</h2>
+          <h2 className={styles["title"]}>{name}</h2>
           <p className={styles["description"]}>{description}</p>
         </footer>
       </Link>
