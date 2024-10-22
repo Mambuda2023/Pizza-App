@@ -5,7 +5,7 @@ import { App } from "../app/App";
 import ErrorBoundary from "../pages/Error/Error";
 import Product from "../pages/Product/Product";
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -23,3 +23,4 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+export default router;

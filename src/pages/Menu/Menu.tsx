@@ -1,12 +1,13 @@
+import { useGetMenuQuery } from "../../app/api/api";
 import ProductCard from "../../entites/ProductCard/ProductCard";
 import Heading from "../../shared/UI/Heading/Heading";
 import Search from "../../shared/UI/Search/Search";
+import Product from "../../widgets/Products/products.interface";
 import styles from "./Menu.module.css";
 
 export function Menu() {
-  const getMenu = async () => {
-    const res = await fetch("");
-  };
+  const { data } = useGetMenuQuery([]);
+  console.log(data);
   return (
     <>
       <div className={styles["head"]}>
