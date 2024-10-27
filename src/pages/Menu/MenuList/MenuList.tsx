@@ -2,7 +2,6 @@ import ProductCard from "../../../entites/ProductCard/ProductCard";
 import { MenuListProps } from "./menu.list.props";
 
 const MenuList = ({ product }: MenuListProps) => {
-  console.log(product);
   return product?.map((item) => (
     <ProductCard
       key={item.id}
