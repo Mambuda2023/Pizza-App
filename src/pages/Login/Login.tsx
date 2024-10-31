@@ -7,6 +7,9 @@ import Button from "../../shared/UI/Button/Button";
 import Heading from "../../shared/UI/Heading/Heading";
 import Input from "../../shared/UI/Input/Input";
 import styles from "./Login.module.css";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../app/store/store";
+import { userActions } from "../../app/store/user.slice";
 
 export type LoginForm = {
   email: {
@@ -19,6 +22,7 @@ export type LoginForm = {
 const Login = () => {
   const [error, setError] = useState<string | null>();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const submit = async (event: FormEvent) => {
     event.preventDefault();
     setError(null);
@@ -33,6 +37,7 @@ const Login = () => {
         password,
       });
       localStorage.setItem("JWT", data.access_token);
+      dispatch(userActions.addJwt(data.access_token));
       navigate("/");
     } catch (e) {
       if (e instanceof axios.AxiosError) setError(e.response?.data.message);
