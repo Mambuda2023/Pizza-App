@@ -40,3 +40,10 @@
 .links a {
   color: var(--primary-color);
 }
+
+.error {
+  background-color: #ffc529;
+  color: white;
+  padding: 25px;
+  border-radius: 8px;
+}

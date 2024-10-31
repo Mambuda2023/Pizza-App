@@ -3,16 +3,43 @@ import Button from "../../shared/UI/Button/Button";
 import Heading from "../../shared/UI/Heading/Heading";
 import Input from "../../shared/UI/Input/Input";
 import styles from "./Login.module.css";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import axios from "axios";
+import { PREFIX } from "../../app/api/helpers/helpers";
+
+export type LoginForm = {
+  email: {
+    value: string;
+  };
+  password: {
+    value: string;
+  };
+};
 const Login = () => {
-  const submit = (event: FormEvent) => {
+  const [error, setError] = useState<string | null>();
+  const submit = async (event: FormEvent) => {
     event.preventDefault();
-    console.log(event);
+    setError(null);
+    const target = event.target as typeof event.target & LoginForm;
+    const { email, password } = target;
+    await sendLogin(email.value, password.value);
+  };
+  const sendLogin = async (email: string, password: string) => {
+    try {
+      const { data } = await axios.post(`${PREFIX}/auth/login`, {
+        email,
+        password,
+      });
+      console.log(data);
+    } catch (e) {
+      if (e instanceof axios.AxiosError) setError(e.response?.data.message);
+    }
   };
   return (
     <div className={styles["login"]}>
       <Heading>Вход</Heading>
-      <form action="" className={styles["form"]} onSubmit={submit}>
+      {error && <div className={styles["error"]}>{error}</div>}
+      <form className={styles["form"]} onSubmit={submit}>
         <div className={styles["field"]}>
           <label htmlFor="email">Ваш email</label>
           <Input type="text" name="email" placeholder="Email" id="email" />
