@@ -1,8 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../../shared/UI/Button/Button";
 import cn from "classnames";
 import styles from "./Sidebar.module.css";
 export const Sidebar = () => {
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("JWT");
+    navigate("/auth/login");
+  };
   return (
     <section className={styles["sidebar"]}>
       <article className={styles["user"]}>
@@ -40,7 +45,7 @@ export const Sidebar = () => {
           </NavLink>
         </li>
       </ul>
-      <Button className={styles["exit"]} appearance="small">
+      <Button className={styles["exit"]} appearance="small" onClick={logout}>
         <img src="/public/exit-icon.svg" alt="Иконка выхода" />
         Выйти
       </Button>

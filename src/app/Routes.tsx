@@ -1,20 +1,27 @@
 import { createBrowserRouter, defer } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import axios from "axios";
+import { PREFIX } from "./api/helpers/helpers";
+
+import AuthLayout from "../pages/Auth/AuthLayout";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
+import RequiredAuth from "./api/helpers/RequiredAuth/RequiredAuth";
 import Card from "../pages/Card/Card";
 import { App } from "../app/App";
 import ErrorBoundary from "../pages/Error/Error";
 import Product from "../pages/Product/Product";
-import axios from "axios";
-import { PREFIX } from "./api/helpers/helpers";
-import { lazy, Suspense } from "react";
-import AuthLayout from "../pages/Auth/AuthLayout";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
 
 const Menu = lazy(() => import("../pages/Menu/Menu"));
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <RequiredAuth>
+        <App />
+      </RequiredAuth>
+    ),
     errorElement: <ErrorBoundary />,
     children: [
       {
