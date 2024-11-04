@@ -9,7 +9,7 @@ import Input from "../../shared/UI/Input/Input";
 import styles from "./Login.module.css";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store/store";
-import { userActions } from "../../app/store/user.slice";
+import { userActions } from "../../app/store/userSlice/user.slice";
 
 export type LoginForm = {
   email: {
@@ -36,7 +36,6 @@ const Login = () => {
         email,
         password,
       });
-      localStorage.setItem("JWT", data.access_token);
       dispatch(userActions.addJwt(data.access_token));
       navigate("/");
     } catch (e) {
