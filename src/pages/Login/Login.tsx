@@ -1,35 +1,35 @@
 import { Link, useNavigate } from "react-router-dom";
-import { FormEvent, useState } from "react";
-import axios from "axios";
-import { PREFIX } from "../../app/api/helpers/helpers";
-import LoginResponse from "../Auth/auth.interface";
+import { FormEvent, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Button from "../../shared/UI/Button/Button";
 import Heading from "../../shared/UI/Heading/Heading";
 import Input from "../../shared/UI/Input/Input";
+
+import { AppDispatch, RootState } from "../../app/store/store";
+import { login } from "../../app/store/userSlice/userAsyncThunk";
+
 import styles from "./Login.module.css";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../app/store/store";
+import { LoginForm } from "./loginType";
+import axios, { AxiosError } from "axios";
+import LoginResponse from "../Auth/auth.interface";
+import { PREFIX } from "../../app/api/helpers/helpers";
 import { userActions } from "../../app/store/userSlice/user.slice";
 
-export type LoginForm = {
-  email: {
-    value: string;
-  };
-  password: {
-    value: string;
-  };
-};
 const Login = () => {
   const [error, setError] = useState<string | null>();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+
   const submit = async (event: FormEvent) => {
     event.preventDefault();
+
     setError(null);
     const target = event.target as typeof event.target & LoginForm;
     const { email, password } = target;
     await sendLogin(email.value, password.value);
   };
+
   const sendLogin = async (email: string, password: string) => {
     try {
       const { data } = await axios.post<LoginResponse>(`${PREFIX}/auth/login`, {
@@ -39,9 +39,12 @@ const Login = () => {
       dispatch(userActions.addJwt(data.access_token));
       navigate("/");
     } catch (e) {
-      if (e instanceof axios.AxiosError) setError(e.response?.data.message);
+      if (e instanceof AxiosError) {
+        setError(e.response?.data.message);
+      }
     }
   };
+
   return (
     <div className={styles["login"]}>
       <Heading>Вход</Heading>

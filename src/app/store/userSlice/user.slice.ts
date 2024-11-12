@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./userState";
+import { login } from "./userAsyncThunk";
+import LoginResponse from "../../../pages/Auth/auth.interface";
 
 export const userSlice = createSlice({
   name: "user",
@@ -11,6 +13,15 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.jwt = null;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(
+      login.fulfilled,
+      (state, action: PayloadAction<LoginResponse>) => {
+        state.jwt = action.payload.access_token;
+      }
+    ),
+      builder.addCase(login.rejected, (state, action) => {});
   },
 });
 export default userSlice.reducer;

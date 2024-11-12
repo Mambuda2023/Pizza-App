@@ -2,10 +2,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../../shared/UI/Button/Button";
 import cn from "classnames";
 import styles from "./Sidebar.module.css";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../app/store/store";
+import { userActions } from "../../app/store/userSlice/user.slice";
 export const Sidebar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const logout = () => {
-    localStorage.removeItem("JWT");
+    dispatch(userActions.logout());
     navigate("/auth/login");
   };
   return (
