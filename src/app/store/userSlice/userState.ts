@@ -5,5 +5,4 @@ export const JWT_PERSISTENT = "userData";
 
 export const initialState: UserState = {
   jwt: loadState<UserPersistentState>(JWT_PERSISTENT)?.jwt ?? null,
-  loginState: null,
 };

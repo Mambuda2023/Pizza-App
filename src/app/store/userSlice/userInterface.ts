@@ -1,6 +1,6 @@
 export interface UserState {
   jwt: string | null;
-  loginState: null | "rejected";
+  loginErrorMessage?: string;
 }
 export interface UserPersistentState {
   jwt: string | null;
