@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./userState";
 import { login } from "./userAsyncThunk";
+import { getProfile } from "../profileSlice/profileAsyncThunk";
 
 export const userSlice = createSlice({
   name: "user",
@@ -22,10 +23,13 @@ export const userSlice = createSlice({
         return;
       }
       state.jwt = action.payload.access_token;
-    }),
-      builder.addCase(login.rejected, (state, action) => {
-        state.loginErrorMessage = action.error.message;
-      });
+    });
+    builder.addCase(login.rejected, (state, action) => {
+      state.loginErrorMessage = action.error.message;
+    });
+    builder.addCase(getProfile.fulfilled, (state, action) => {
+      state.profile = action.payload;
+    });
   },
 });
 export default userSlice.reducer;

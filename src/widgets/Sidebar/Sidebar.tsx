@@ -2,12 +2,20 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Button from "../../shared/UI/Button/Button";
 import cn from "classnames";
 import styles from "./Sidebar.module.css";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../app/store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../app/store/store";
 import { userActions } from "../../app/store/userSlice/user.slice";
+import { useEffect } from "react";
+import { getProfile } from "../../app/store/profileSlice/profileAsyncThunk";
 export const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const profile = useSelector((s: RootState) => s.user.profile);
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, [dispatch]);
+
   const logout = () => {
     dispatch(userActions.logout());
     navigate("/auth/login");
@@ -17,8 +25,8 @@ export const Sidebar = () => {
       <article className={styles["user"]}>
         <img src="/public/Avatar.png" alt="Avatar Icon" />
         <footer className={styles["user-footer"]}>
-          <h2 className={styles["name"]}>Мазманян Юрий</h2>
-          <p className={styles["email"]}>mambuda@gmail.com</p>
+          <h2 className={styles["name"]}>{profile?.name}</h2>
+          <p className={styles["email"]}>{profile?.email}</p>
         </footer>
       </article>
       <ul className={styles["menu"]}>
