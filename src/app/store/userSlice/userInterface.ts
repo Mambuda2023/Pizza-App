@@ -2,6 +2,7 @@ export interface UserState {
   jwt: string | null;
   loginErrorMessage?: string;
   profile?: Profile;
+  registerErrorMessage?: string;
 }
 export interface UserPersistentState {
   jwt: string | null;
