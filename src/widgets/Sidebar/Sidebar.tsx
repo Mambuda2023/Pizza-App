@@ -11,6 +11,7 @@ export const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const profile = useSelector((s: RootState) => s.user.profile);
+  const items = useSelector((s: RootState) => s.cart.items);
 
   useEffect(() => {
     dispatch(getProfile());
@@ -55,6 +56,7 @@ export const Sidebar = () => {
             <img src="/public/cart-icon.svg" alt="Иконка корзины" />
             Корзина
           </NavLink>
+          {items.reduce((acc, item) => (acc += item.count), 0)}
         </li>
       </ul>
       <Button className={styles["exit"]} appearance="small" onClick={logout}>

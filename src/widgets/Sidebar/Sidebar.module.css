@@ -37,6 +37,7 @@
   align-items: center;
   gap: 14px;
   color: var(--text-color);
+  margin-right: 10px;
 }
 .link:hover {
   color: var(--primary-color);
