@@ -1,0 +1,16 @@
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"
+
+    volumes:
+      - ".nginx.conf:/etc/nginx/nginx.conf"
+    depends_on:
+      - frontend
+  frontend:
+    container_name: pizza-app
+    build:
+      context: ./
+    networks:
+      frontend:

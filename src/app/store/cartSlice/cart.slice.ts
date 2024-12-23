@@ -2,12 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { initialState } from "./cartState";
 
-
-
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    clean: (state) => {
+      state.items = [];
+    },
     delete: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((i) => i.id !== action.payload);
     },
