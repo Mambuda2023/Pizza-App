@@ -11,6 +11,7 @@ import Card from "../pages/Card/Card";
 import { App } from "../app/App";
 import ErrorBoundary from "../pages/Error/Error";
 import Product from "../pages/Product/Product";
+import { Success } from "../pages/Success/Success";
 
 const Menu = lazy(() => import("../pages/Menu/Menu"));
 
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
         ),
         path: "/",
       },
+      { path: "/success", element: <Success /> },
       {
         path: "/cart",
         element: <Card />,
