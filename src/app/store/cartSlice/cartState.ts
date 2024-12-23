@@ -1,5 +1,9 @@
-import { CartState } from "./cartInterface";
+import { loadState } from "../storage";
 
-export const initialState: CartState = {
+import { CartState } from "./cartInterface";
+export const CART_PERSISTENT_STATE = "cartData";
+export const initialState: CartState = loadState<CartState>(
+  CART_PERSISTENT_STATE
+) ?? {
   items: [],
 };

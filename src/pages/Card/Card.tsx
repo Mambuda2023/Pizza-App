@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Product from "../../widgets/Products/products.interface";
 import axios from "axios";
 import { PREFIX } from "../../app/api/helpers/helpers";
+import styles from "./Card.module.css";
 
 const Cart = () => {
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
@@ -26,14 +27,14 @@ const Cart = () => {
   }, [items]);
   return (
     <>
-      <Heading>Корзина</Heading>
+      <Heading className={styles["headline"]}>Корзина</Heading>
 
       {items.map((i) => {
         const product = cartProducts.find((p) => (p.id = i.id));
         if (!product) {
           return;
         }
-        return <CartItem count={i.count} {...product} />;
+        return <CartItem key={product.id} count={i.count} {...product} />;
       })}
     </>
   );
